@@ -7,19 +7,10 @@
 # not run in a web broswer and will only work when the computer
 # is connected to the Internet. 
 
-class LoadingImages < Processing::App
 
-  def setup
-  	
-  	size 200, 200
-  	
-  	background 255
-  	
-	img1 = load_image "http://s3.amazonaws.com/jashkenas/images/ruby.jpg"
-	
+def setup  	
+  size 200, 200  	
+  background 255  	
+	img1 = load_image "http://s3.amazonaws.com/jashkenas/images/ruby.jpg"	
 	image img1, 0, 45
-  end
-  
 end
-
-LoadingImages.new :title => "Loading Images"
