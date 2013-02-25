@@ -10,7 +10,7 @@ def setup
   background 0
   smooth
   stroke_weight 4
-  ellipse_mode CENTER_DIAMETER
+  ellipse_mode CENTER
   color_mode RGB, 255
 end
 
