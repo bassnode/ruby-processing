@@ -23,7 +23,7 @@ class Boid
     end
     count = @boids.length - 1.0
     vx, vy, vz = vx/count, vy/count, vz/count
-    return (vx - @x)/d, (vy - @y)/d, (vz - @z)/d
+    return (vx - @x) / d, (vy - @y) / d, (vz - @z) / d
   end
   
   def separation(radius = 10.0)
@@ -49,8 +49,8 @@ class Boid
       end
     end
     count = @boids.length - 1.0
-    vx, vy, vz = vx/count, vy/count, vz/count
-    return (vx - @vx)/d, (vy - @vy)/d, (vz - @vz)/d
+    vx, vy, vz = vx / count, vy / count, vz / count
+    return (vx - @vx) / d, (vy - @vy) / d, (vz - @vz) / d
   end
   
   def limit(max=30.0)
@@ -71,7 +71,7 @@ class Boid
   
   def goal(x, y, z, d = 50.0)
     # Them boids is hungry.
-    return (x - @x)/d, (y - @y)/d, (z - @z)/d
+    return (x - @x) / d, (y - @y) / d, (z - @z) / d
   end
 end
 
@@ -102,7 +102,7 @@ class Boids < Array
     @scatter_i = 0.0
     @perch = 1.0 # Lower this number to divebomb.
     @perch_y = @h
-    @perch_time = lambda {25.0 + rand(50.0)}
+    @perch_time = -> {rand(25.0 .. 75.0)}
     @has_goal = false
     @flee = false
     @goal_x = @goal_y = @goal_z = 0.0
@@ -119,7 +119,7 @@ class Boids < Array
   end
   
   def perch(ground = nil, chance = 1.0, frames = nil)
-    frames ||= lambda {25.0 + rand(50.0)}
+    frames ||= -> {rand(25.0 .. 75.0)}
     ground ||= @h
     @perch, @perch_y, @perch_time = chance, ground, frames
   end
@@ -165,12 +165,12 @@ class Boids < Array
   def update(opts={})
     # Just flutter, little boids ... just flutter away.
     # Shuffling keeps things flowing smooth.
-    options = {:shuffled => true, 
-               :cohesion => 100.0, 
-               :separation => 10.0, 
-               :alignment => 5.0, 
-               :goal => 20.0, 
-               :limit => 30.0}
+    options = {shuffled: true, 
+               cohesion: 100.0, 
+               separation: 10.0, 
+               alignment: 5.0, 
+               goal: 20.0, 
+               limit: 30.0}
     options.merge! opts
     
     self.shuffle if options[:shuffled]

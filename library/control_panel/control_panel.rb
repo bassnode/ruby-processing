@@ -102,12 +102,6 @@ module ControlPanel
       set_size 200, 30 + (64 * @elements.size)
       set_default_close_operation javax.swing.JFrame::DISPOSE_ON_CLOSE
       set_resizable false
-      # Need to wait for the sketch to finish sizing...
-      Thread.new do
-        sleep 0.2 while !$app.started?
-        set_location($app.width + 10, 0)
-        show
-      end
     end
 
     def add_element(element, name, has_label=true, button=false)
@@ -146,7 +140,6 @@ module ControlPanel
 
   module InstanceMethods
     def control_panel
-      return if Processing.online?
       @control_panel = ControlPanel::Panel.new unless @control_panel
       return @control_panel unless block_given?
       yield(@control_panel)
