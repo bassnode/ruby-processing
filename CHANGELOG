@@ -1,3 +1,14 @@
+v1.0.12 Updating to Processing-2.0 ...
+  * Processing updated to processing-2.0b8 (yes it is beta but this is a huge change and needs testing in the wild)
+  * as with processing-2.0 export to applet has disappeared, also P3D is the new OPENGL. Processing-2.0  has its
+  * own event system (replacing java.awt.event), ruby-processing sketches will normally use this event system.
+  * JRuby upgraded to 1.7.3 (default is ruby 1.9 use switch for ruby 1.8)
+  * NB: bare sketches replace class wrapped sketches see samples...
+  * Samples have been extended to include vanilla processing library examples.
+  * References to the 'online' variable have been removed (deprecated in processing-2.0 slated for removal)
+  * test suite now uses MiniTest some old tests probably will fail anyway, temporatily marked as skip	
+  * Samples now rely on ruby 1.9 and processing-2.0 (and many examples are incompatible with earlier versions)
+
 v1.0.11 Fixing broken stuffs...
   * JRuby upgraded to 1.6.5
   * applet export fixed
