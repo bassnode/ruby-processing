@@ -28,13 +28,13 @@ task :copy => ["../lib/core"] do
   sh "cp -v jruby-complete-#{JRUBY_VERSION}.jar ../lib/core/jruby-complete.jar"
 
   processing_zip = File.expand_path("processing-#{PROCESSING_VERSION}-linux64.tgz")
-  sh "cd ../lib/core && tar --wildcards --strip=3 -zvxf #{processing_zip} processing-#{PROCESSING_VERSION}/core/library/*.jar"
+  sh "cd ../lib/core && tar --strip=3 -zvxf #{processing_zip} processing-#{PROCESSING_VERSION}/core/library/*.jar"
 
   dirs = %w{dxf javascript minim net pdf serial video}
   Dir.chdir("../library/") do
     sh "rm -rf processing-#{PROCESSING_VERSION}/ #{dirs.join(" ")}"
     inside_zip_dirs = dirs.collect { |d| "processing-#{PROCESSING_VERSION}/modes/java/libraries/#{d}/library/*" }
-    sh "tar --wildcards -zxvf #{processing_zip} #{inside_zip_dirs.join(" ")}"
+    sh "tar -zxvf #{processing_zip} #{inside_zip_dirs.join(" ")}"
     sh "mv processing-#{PROCESSING_VERSION}/modes/java/libraries/* ."
     sh "rm -r processing-#{PROCESSING_VERSION}/"
   end
